@@ -1,0 +1,54 @@
+.header {
+
+  &-contenu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &-content {
+      font-weight: bold;
+      font-size: 18px;
+      background: #DB8876;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      width: 10%;
+      padding: 8px 6px;
+      cursor: pointer;
+    }
+  }
+
+  &-main {
+    color: $red-text;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-title {
+    font-size: 36px;
+  }
+
+  &-filters {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 6em;
+
+    &-tag {
+      border: 0.5px solid #C4C4C4;
+      padding: 3px 7px;
+      font-weight: 500;
+      font-size: 12px;
+      border-radius: 11px;
+      margin-right:0.5em;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: $red-text;
+        color: white;
+      }
+    }
+  }
+}

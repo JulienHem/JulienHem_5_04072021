@@ -1,0 +1,96 @@
+.photographers {
+
+
+  &-details {
+    margin-top: 1em;
+    text-align: center;
+
+    &-tags {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  &-cards {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &-link {
+      text-align: center;
+      margin-bottom: 100px;
+
+      &:nth-child(2) {
+        margin-right: 350px;
+        margin-left: 350px;
+      }
+
+      &:nth-child(5) {
+        margin-right: 350px;
+        margin-left: 350px;
+      }
+    }
+
+    &-name {
+      font-size: 36px;
+      color: $red-text;
+      margin-bottom: 0.2em;
+    }
+
+    &-city {
+      font-size: 13px;
+      color: $red-text;
+      margin-bottom: 0.2em;
+
+    }
+
+    &-quote {
+      font-size: 10px;
+      line-height: 13px;
+      margin-bottom: 0.5em;
+
+    }
+
+    &-picture {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.2);
+      transition: 0.1s
+    }
+
+    &-picture:hover {
+      box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.45)
+
+    }
+
+    &-price {
+      font-size: 12px;
+      line-height: 12px;
+      color: #757575;
+      margin-bottom: 1em;
+
+    }
+
+    &-tags {
+      color: $red-text;
+      border: 0.5px solid #C4C4C4;
+      padding: 3px 7px;
+      font-weight: bold;
+      font-size: 12px;
+      border-radius: 11px;
+      margin-right:0.5em;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: $red-text;
+        color: white;
+      }
+      
+    }
+  }
+}

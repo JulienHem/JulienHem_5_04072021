@@ -1,0 +1,22 @@
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 2em;
+
+}
+
+#filter-date {
+    display: none;
+}
+
+#filter-title {
+    display: none;
+}
+
+li {
+
+    &:not(:first-child) {
+        display: none;
+    }
+}

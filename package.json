@@ -1,0 +1,23 @@
+{
+  "name": "p5_julien_hemery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.ts",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "author": "Julien HEMERY",
+  "license": "MIT",
+  "browserslist": "last 4 versions",
+  "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "axios": "^0.21.1",
+    "eslint": "^7.30.0",
+    "sass": "^1.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "tslib": "^2.3.0"
+  }
+}

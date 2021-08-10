@@ -1,0 +1,238 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 50px;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-family: DM Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+html {
+  font-family: DM Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.photographers-details {
+  margin-top: 1em;
+  text-align: center;
+}
+.photographers-details-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.photographers-cards {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.photographers-cards-link {
+  text-align: center;
+  margin-bottom: 100px;
+}
+.photographers-cards-link:nth-child(2) {
+  margin-right: 350px;
+  margin-left: 350px;
+}
+.photographers-cards-link:nth-child(5) {
+  margin-right: 350px;
+  margin-left: 350px;
+}
+.photographers-cards-name {
+  font-size: 36px;
+  color: #911C1C;
+  margin-bottom: 0.2em;
+}
+.photographers-cards-city {
+  font-size: 13px;
+  color: #911C1C;
+  margin-bottom: 0.2em;
+}
+.photographers-cards-quote {
+  font-size: 10px;
+  line-height: 13px;
+  margin-bottom: 0.5em;
+}
+.photographers-cards-picture {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.2);
+  transition: 0.1s;
+}
+.photographers-cards-picture:hover {
+  box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.45);
+}
+.photographers-cards-price {
+  font-size: 12px;
+  line-height: 12px;
+  color: #757575;
+  margin-bottom: 1em;
+}
+.photographers-cards-tags {
+  color: #911C1C;
+  border: 0.5px solid #C4C4C4;
+  padding: 3px 7px;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 11px;
+  margin-right: 0.5em;
+  transition: 0.2s;
+}
+.photographers-cards-tags:hover {
+  background-color: #911C1C;
+  color: white;
+}
+
+.header-contenu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.header-contenu-content {
+  font-weight: bold;
+  font-size: 18px;
+  background: #DB8876;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+.header-main {
+  color: #911C1C;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-title {
+  font-size: 36px;
+}
+.header-filters {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 6em;
+}
+.header-filters-tag {
+  border: 0.5px solid #C4C4C4;
+  padding: 3px 7px;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 11px;
+  margin-right: 0.5em;
+  transition: 0.2s;
+}
+.header-filters-tag:hover {
+  background-color: #911C1C;
+  color: white;
+}
+
+.photographer-page {
+  background: #fafafab7;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 50px 56px;
+  justify-content: space-between;
+  margin-top: 51px;
+}
+.photographer-page-details-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.photographer-page-details-head-name {
+  padding-right: 118px;
+  color: #D3573C;
+  font-size: 64px;
+  line-height: 83px;
+  font-weight: normal;
+}
+.photographer-page-details-head__contact {
+  background: #911C1C;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  line-height: 26px;
+  padding: 21px 11px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 70px;
+}
+.photographer-page-details-head__contact:hover {
+  box-shadow: 0px 0px 15px 0 rgba(0, 0, 0, 0.59);
+}
+.photographer-page-details-city {
+  color: #911C1C;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+select {
+  border: none;
+  background-color: #911C1C;
+  color: white;
+  height: 70px;
+  min-width: 148px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  border-radius: 5px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 2em;
+}
+
+#filter-date {
+  display: none;
+}
+
+#filter-title {
+  display: none;
+}
+
+li:not(:first-child) {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */
