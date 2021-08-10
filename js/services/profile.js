@@ -57,12 +57,10 @@ function swapElements() {
   filterButtons.forEach((filterButton) => {
     filterButton.addEventListener("click", (e) => {
       if (!filtering) {
-        debugger;
         filtering = true;
         return;
       }
 
-      debugger;
       let find = titles.find((title) => title === e.target.innerHTML);
       let titlePosition = titles.indexOf(e.target.innerHTML);
       console.log(find, titlePosition);
