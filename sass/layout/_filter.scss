@@ -1,8 +1,50 @@
 .filter {
     display: flex;
     flex-direction: row;
-    align-items: center;
     padding-top: 2em;
+    position: absolute;;
+
+    &-by {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+        padding-top: 40px;
+    }
+
+    #filter-buttons {
+        z-index: 1;
+
+        .fa-chevron-down{
+            position: absolute;
+            top: 76.5px;
+            left: 240.583px;
+            transition: all 0.1s ease-in-out;
+            color: white;
+        }
+
+        .rotate-arrow{
+            transform: rotate(180deg)
+
+        }
+        
+        .filter-button {
+            background: #911c1c;
+            color: white;
+            font-size: 20px;
+            line-height: 26px;
+            padding: 21px 11px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            height: 70px;
+            width: 170px;
+            text-align: justify;
+            padding-left: 20px;
+            border-bottom: 1px solid white;
+
+         
+        }
+    }
 
 }
 
@@ -20,3 +62,4 @@ li {
         display: none;
     }
 }
+

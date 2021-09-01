@@ -76,7 +76,7 @@ function createPhotographersDetails(photographer) {
 
   photographerCard.href = `../photographer-page.html?id=` + photographer.id;
  
-  img.src = "public/img/profiles_pictures/" + photographer.portrait;
+  img.src = "public/media/profiles_pictures/" + photographer.portrait;
   img.alt = "Profile picture of the photographer";
 
   photographersCards.appendChild(photographerCard);
