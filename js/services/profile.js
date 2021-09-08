@@ -3,12 +3,16 @@ let urlPhotographerId = params.get("id");
 let profile = {};
 let media = [];
 let mediaElements = [];
-
+let carouselMediaCount = 0;
+let modalIndex = 0;
 let toggle = false;
 let mediaElement;
+const carouselWrapper = document.querySelector(".carousel-container-picture");
 let filters = document.querySelectorAll(".filter-button");
 let modalContent = document.querySelector(".carousel-container-picture");
 const pictureParent = document.querySelector(".pictures-cards");
+const prevSlide = document.querySelector(".carousel-prev");
+const nextSlide = document.querySelector(".carousel-next");
 const titles = ["Popularité", "Date", "Titre"];
 
 class Image {
@@ -45,21 +49,21 @@ class ElementFactory {
 fetch("../../src/data.json")
   .then((response) => response.json())
   .then((data) => {
-    data.media.forEach((medias) => {
+    data.media.forEach((medias, index) => {
       if (medias.photographerId === +urlPhotographerId) {
         displayPictures(medias);
         displayModalPictures(medias);
+        carouselMediaCount++;
         media.push(medias);
       }
     });
-    carouselAnimation();
 
     data.photographers.forEach((photographer) => {
       if (photographer.id === +urlPhotographerId) {
         profile = photographer;
       }
     });
-
+    carouselAnimation();
     displayDetails();
   });
 
@@ -101,40 +105,6 @@ function createFilters() {
   });
 }
 
-function carouselAnimation() {
-  const prevSlide = document.querySelector(".carousel-prev");
-  const nextSlide = document.querySelector(".carousel-next");
-  const carouselWrapper = document.querySelector(".carousel-container-picture");
-  const mediasLength = carouselWrapper.children.length;
-  let index = 0;
-
-  mediaElements.push(mediaElement);
-  const maxIndex = mediaElements.length;
-  if (index === 0) {
-    prevSlide.style.display = "none";
-  }
-
-  nextSlide.addEventListener("click", () => {
-    let slideValue = carouselWrapper.clientWidth / mediasLength;
-    index++;
-    console.log(carouselWrapper.clientWidth);
-    let right = Number(carouselWrapper.style.right.split("px")[0]);
-    carouselWrapper.style.right = right + slideValue + "px";
-    prevSlide.style.display = "block";
-  });
-
-  prevSlide.addEventListener("click", () => {
-    let slideValue = carouselWrapper.clientWidth / mediasLength;
-    index--;
-    if (index === 0) {
-      prevSlide.classList.add("d-none");
-    }
-    nextSlide.classList.remove("d-none");
-    let right = Number(carouselWrapper.style.right.split("px")[0]);
-    carouselWrapper.style.right = right - slideValue + "px";
-  });
-}
-
 function displayModalPictures(media) {
   const element = new ElementFactory();
 
@@ -153,6 +123,35 @@ function displayModalPictures(media) {
 
   modalContent.appendChild(mediaElement);
 }
+
+function carouselAnimation() {
+ 
+  const maxIndex = carouselMediaCount
+  if (modalIndex === 0) {
+    prevSlide.style.display = "none";
+  }
+
+  nextSlide.addEventListener("click", () => {
+    carouselWrapper.style.right = (585*(modalIndex - 1)) + 585 + "px";
+    modalIndex++;
+    prevSlide.style.display = "block";
+
+    if(modalIndex === maxIndex) {
+      nextSlide.style.display = 'none';
+    }
+  });
+
+  prevSlide.addEventListener("click", () => {
+
+    modalIndex--;
+    if (modalIndex === 1) {
+      prevSlide.style.display = 'none';
+    }
+    nextSlide.style.display = 'block';
+    carouselWrapper.style.right = (585*modalIndex - 1) - 585 + "px";
+  });
+}
+
 
 function displayPictures(media) {
   const pictureCard = document.createElement("div");
@@ -291,14 +290,28 @@ function filterCards(filterName, value) {
   });
 }
 
+function moveCarouselPictures() {
+  carouselWrapper.style.right = (585*modalIndex) + 585 + "px";
+  carouselWrapper.style.right = (585*modalIndex) - 585 + "px";
+
+}
+
 function openModal() {
   let cards = document.querySelectorAll(".pictures-cards-card");
   const modal = document.querySelector("#myModal");
   const span = document.getElementsByClassName("close")[0];
 
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
     card.addEventListener("click", () => {
+      modalIndex = index + 1;
+      console.log(modalIndex);
       modal.style.display = "block";
+      if(modalIndex > 1) {
+        prevSlide.style.display = 'block';
+      } else if (modalIndex === 10 ) {
+        nextSlide.style.display = 'none';
+      }
+        moveCarouselPictures();
     });
   });
 
