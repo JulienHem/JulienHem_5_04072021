@@ -107,11 +107,14 @@
   left: auto;
 }
 
-.carouse_-next {
-  margin-right: 230px;
+.carousel-next {
+  font-size: 30px;
+  color: $red-text;
 }
 .carousel-prev {
   margin-left: 60px;
+  font-size: 30px;
+  color: $red-text;
 }
 .carousel-box {
   position: relative;
@@ -135,4 +138,59 @@
   object-fit: cover;
   margin-right: 220px;
   height: 550px;
+}
+
+.pictures-bottom {
+  color: $red-text;
+}
+
+.fa-times {
+  color: $red-text;
+  font-size: 35px;
+  position: absolute;
+  top: 7%;
+  right: 14%;
+  cursor: pointer;
+}
+
+
+
+
+#contactModal {
+
+  .fa-times{
+    position: relative;
+    color: white;
+    left: 270px;
+  }
+  .contact-modal-content {
+    background-color: #DB8876;
+    padding: 2rem;
+  }
+  
+  .modal-body-inputs{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-body{
+    height: 500px;
+    padding-top: 5rem;
+
+    &-inputs {
+      height: 100%;
+      display: flex;
+      align-content: space-around;
+    }
+    
+    input {
+      height: 68px;
+
+      &:nth-child(3) {
+        height: 170px;
+      }
+    }
+
+   
+  }
 }

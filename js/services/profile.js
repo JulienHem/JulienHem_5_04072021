@@ -107,6 +107,10 @@ function createFilters() {
 
 function displayModalPictures(media) {
   const element = new ElementFactory();
+  const pictureContainer = document.createElement('div');
+  const pictureBottom = document.createElement("div");
+  const pictureTitle = document.createElement("div");
+
 
   if (media.image) {
     mediaElement = element.create(
@@ -120,8 +124,16 @@ function displayModalPictures(media) {
     );
   }
   mediaElement.classList.add("modal-media");
+  pictureBottom.classList.add("pictures-bottom");
 
-  modalContent.appendChild(mediaElement);
+  pictureTitle.innerHTML = media.title;
+
+
+  modalContent.appendChild(pictureContainer);
+  pictureContainer.appendChild(mediaElement);
+  pictureContainer.appendChild(pictureBottom);
+  pictureBottom.appendChild(pictureTitle);
+  
 }
 
 function carouselAnimation() {
@@ -285,13 +297,13 @@ function filterCards(filterName, value) {
       }
       media.forEach((sortedMedia) => {
         displayPictures(sortedMedia);
+        displayModalPictures(sortedMedia);
       });
     });
   });
 }
 
 function moveCarouselPictures() {
-  carouselWrapper.style.right = (585*modalIndex) + 585 + "px";
   carouselWrapper.style.right = (585*modalIndex) - 585 + "px";
 
 }
@@ -299,31 +311,39 @@ function moveCarouselPictures() {
 function openModal() {
   let cards = document.querySelectorAll(".pictures-cards-card");
   const modal = document.querySelector("#myModal");
-  const span = document.getElementsByClassName("close")[0];
+  const contactModal = document.querySelector('#contactModal')
+  const closeIcon = document.querySelector('.fa-times');
+  const contactButton = document.querySelector('.photographer-page-details-head__contact');
+
+  contactButton.addEventListener('click', () => {
+    contactModal.style.display = "block";
+  })
 
   cards.forEach((card, index) => {
     card.addEventListener("click", () => {
       modalIndex = index + 1;
-      console.log(modalIndex);
       modal.style.display = "block";
       if(modalIndex > 1) {
         prevSlide.style.display = 'block';
-      } else if (modalIndex === 10 ) {
-        nextSlide.style.display = 'none';
+      } else if (modalIndex === 1) {
+        prevSlide.style.display = 'none';
+      }
+      if (modalIndex === 10) {
+        nextSlide.style.display = 'none'
+      } else if (modalIndex < 10) {
+        nextSlide.style.display = 'block'
+
       }
         moveCarouselPictures();
     });
   });
 
-  span.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+  closeIcon.addEventListener('click', () => {
+    modal.style.display = 'none';
+    contactModal.style.display = 'none';
+  })
 
-  span.addEventListener("click", (e) => {
-    if (e.target == modal) {
-      modal.style.display = "none";
-    }
-  });
+  
 }
 
 createFilters();
