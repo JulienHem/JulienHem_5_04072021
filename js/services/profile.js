@@ -141,7 +141,7 @@ function displayModalPictures(media) {
     );
   }
   mediaElement.classList.add("modal-media");
-  pictureBottom.classList.add("pictures-bottom");
+  pictureBottom.classList.add("modal-pictures-bottom");
   pictureContainer.classList.add('picture-container')
 
   pictureTitle.innerHTML = media.title;
