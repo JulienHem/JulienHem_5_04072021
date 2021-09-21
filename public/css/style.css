@@ -570,7 +570,7 @@ li:not(:first-child) {
 .carousel-container {
   margin-right: auto;
   margin-left: auto;
-  min-width: 1250px;
+  width: 1250px;
   overflow: hidden;
   position: relative;
 }
@@ -705,9 +705,83 @@ li:not(:first-child) {
 }
 
 @media (min-width: 350px) and (max-width: 450px) {
+  .modal-media {
+    position: relative;
+    right: 36px;
+    height: 270px;
+  }
+
+  .carousel-container {
+    width: 250px !important;
+  }
+
+  .carousel-nav {
+    top: 45%;
+    font-size: 20px !important;
+  }
+
+  .carousel-next {
+    right: -12px !important;
+  }
+
+  .carousel-prev {
+    left: -25px;
+  }
+
+  .pictures-bottom {
+    position: relative;
+    left: -7px;
+  }
+
+  .fa-times {
+    top: 12%;
+    right: 8%;
+    font-size: 20px !important;
+  }
+
   .carousel-container-picture {
     max-width: 290px;
     margin-right: 220px;
+  }
+
+  #contactModal .fa-times {
+    top: 3%;
+    left: 88%;
+    font-size: 25px !important;
+  }
+  #contactModal h1 {
+    font-size: 36px;
+  }
+  #contactModal .modal-body {
+    top: 0 !important;
+  }
+  #contactModal .modal-content {
+    height: 100%;
+    width: auto !important;
+  }
+  #contactModal .modal-content .modal-body {
+    top: 115px !important;
+  }
+  #contactModal .modal-content .modal-body-inputs .modal-send-button {
+    height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    margin-left: 17%;
+  }
+  #contactModal .modal-content .modal-body-inputs label {
+    font-size: 24px;
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+  #contactModal .modal-content .modal-body-inputs input {
+    height: 52px;
+    width: 300px;
+  }
+  #contactModal .modal-content .modal-body-inputs textarea {
+    height: 185px;
+    width: 305px;
   }
 }
 

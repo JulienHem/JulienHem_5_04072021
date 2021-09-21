@@ -73,6 +73,8 @@ fetch("../../src/data.json")
 
 
 function displayDetails() {
+  const modalArtistName = document.querySelector('.modal-header-artistname');
+
   const photographerName = document.querySelector(
     ".photographer-page-details-head-name"
   );
@@ -88,6 +90,7 @@ function displayDetails() {
     "public/media/profiles_pictures/" + profile.portrait;
   photographerName.innerHTML = profile.name;
   photographerCity.innerHTML = profile.city;
+  modalArtistName.innerHTML = profile.name;
   profile.tags.forEach((tag) => {
     const photographerTag = document.createElement("div");
     photographerTag.classList.add("photographers-cards-tags");
