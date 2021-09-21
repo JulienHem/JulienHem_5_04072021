@@ -73,7 +73,6 @@
 
 .modal-body {
   position: relative;
-  padding: 2px 16px;
   min-height: 350px;
   top: 50%;
   overflow: hidden;
@@ -153,44 +152,99 @@
   cursor: pointer;
 }
 
-
-
-
 #contactModal {
 
-  .fa-times{
-    position: relative;
+  .modal-content{
+    height: 700px;
+
+  }
+
+  h1 { 
+    font-size: 64px;
+  }
+
+  label {
+    font-size: 36px;
+  }
+
+  .message-label {
+    margin-top: 1rem;
+  }
+  .fa-times {
+    position: absolute;
     color: white;
-    left: 270px;
+    left: 88%;
+    font-size: 50px;
+    z-index: 5;
   }
   .contact-modal-content {
-    background-color: #DB8876;
+    background-color: #db8876;
     padding: 2rem;
   }
-  
-  .modal-body-inputs{
+
+  .modal-body-inputs {
     display: flex;
     flex-direction: column;
   }
 
-  .modal-body{
-    height: 500px;
-    padding-top: 5rem;
+  .modal-body {
+    height: 85%;
+    top: 15%;
 
     &-inputs {
       height: 100%;
       display: flex;
       align-content: space-around;
     }
-    
+
     input {
-      height: 68px;
-
-      &:nth-child(3) {
-        height: 170px;
-      }
+      border: none;
+      height: 150px;
+      font-size: 20px;
+      border-radius: 5px;
+      padding-left: 0.5rem;  
     }
-
-   
+    textarea {
+      border: none;
+      font-size: 20px;
+      border-radius: 5px;
+      resize: none;
+    }
   }
+  .modal-send-button {
+    background: $red-text;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    line-height: 26px;
+    padding: 21px 11px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    height: 70px;
+    width: 250px;
+    margin-top: 1rem;
+
+    &:hover {
+      background: #721616;
+  }
+  }
+}
+
+
+//////// RESPONSIVE ///////@at-root
+
+@media (min-width: 350px) and (max-width: 450px) {
+
+
+ 
+
+  .carousel-container-picture{
+    max-width: 290px;
+    margin-right: 220px;
+  }
+  
+ 
+
+
 }

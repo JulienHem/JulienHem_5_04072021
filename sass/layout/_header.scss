@@ -1,5 +1,4 @@
 .header {
-
   &-contenu {
     display: flex;
     justify-content: center;
@@ -8,14 +7,26 @@
     &-content {
       font-weight: bold;
       font-size: 18px;
-      background: #DB8876;
+      background: #db8876;
       border-radius: 5px;
       display: flex;
       justify-content: center;
       width: 10%;
       padding: 8px 6px;
       cursor: pointer;
+      visibility: hidden;
+      position: fixed;
+      bottom: 886px;
+      transition: 0.2s;
+
+      &:hover {
+        background: #be7666;
+      }
     }
+  }
+
+  &-logo {
+    cursor: pointer;
   }
 
   &-main {
@@ -28,6 +39,7 @@
 
   &-title {
     font-size: 36px;
+    order: 3;
   }
 
   &-filters {
@@ -37,12 +49,12 @@
     padding-left: 6em;
 
     &-tag {
-      border: 0.5px solid #C4C4C4;
+      border: 0.5px solid #c4c4c4;
       padding: 3px 7px;
       font-weight: 500;
       font-size: 12px;
       border-radius: 11px;
-      margin-right:0.5em;
+      margin-right: 0.5em;
       transition: 0.2s;
 
       &:hover {
@@ -50,5 +62,68 @@
         color: white;
       }
     }
+  }
+
+}
+
+///// RESPONSIVE /////
+
+@media (min-width: 375px) and (max-width: 450px) {
+
+  .container {
+    margin: 40px 20px;
+  }
+
+  .responsive-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 31px;
+
+    
+  }
+
+  .header-main {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .header {
+
+
+    .header-logo {
+      width: 150px;
+    }
+
+    &-title {
+      font-size: 14px;
+      order: 2;
+
+      &-main {
+
+       
+      }
+
+     
+    }
+
+    &-filters {
+      padding-left: 0;
+      width: 100%;
+      order: 3;
+      width: 100%;
+      order: 3;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+      gap: 0.2em;
+      margin-top: 0.5em;
+    }
+  }
+
+  .photographers-cards{
+    margin-top: 2em;
   }
 }

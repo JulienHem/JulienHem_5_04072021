@@ -76,12 +76,13 @@
 
         &-card {
             margin-bottom: 2em;
-            cursor: pointer;
+           
 
             &-content {
                 object-fit: cover;
                 width: 350px;
                 height: 300px;
+                cursor: pointer;
             }
         }
     }
@@ -112,5 +113,122 @@
 
     .fa-heart {
         margin-left: 6px;
+    }
+}
+
+
+
+//////////// RESPONSIVE ///////////////@at-root
+
+@media (min-width: 350px) and (max-width: 450px) {
+
+    .photographer-page {
+        padding: 0;
+        background: none;
+
+        &-details {
+
+            &-city {
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+            }
+
+            &-head {
+
+                &-name {
+                    height: 60px;
+                    font-size: 36px;
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
+    .photographer-picture{
+        position: absolute;
+        width: 115px;
+        height: 115px;
+        left: 243px;
+        top: 133px;
+        box-shadow: none;
+    }
+
+    
+
+    .photographer-page-details-head__contact{
+        position: fixed;
+        display: flex;
+        left: 31%;
+        top: 87%;
+        height: 40px;
+        padding: 0.4em 0.8em;
+    }
+
+    .filter {
+        display: none !important;
+    }
+
+    .bottom-card {
+        display: none !important;
+    }
+
+    .pictures-cards {
+
+        margin-top: 2em;
+
+        &-card {
+
+            img {
+                height: 190px;
+                width: 335px;
+                border-radius: 5px;
+            }
+
+            video {
+                height: 190px;
+                width: 335px;
+                border-radius: 5px;
+            }
+
+            .pictures-bottom{
+
+                &-title {
+                    font-size: 14px;
+
+                }
+
+                &-likes {
+                    font-size: 14px;
+
+                }
+            }
+          
+            margin-bottom: 38px;
+        }
+    }
+
+    .modal{
+        padding: 0 !important;
+
+        &-body {
+            top: 30% !important;
+        }
+
+        &-content {
+            height: 100%;
+            width: 100% !important;
+        }
+
+        .carousel-container {
+
+            &-picture {
+                margin-left: 3%;
+                img {
+                    height: 248px;
+
+                }
+            }
+        }
     }
 }

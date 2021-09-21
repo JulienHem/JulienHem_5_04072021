@@ -17,7 +17,7 @@
 
       <header>
         <div class="header">
-          <img src="public/media/logo.png" href="#"alt="img" class="header-logo" />
+          <img src="public/media/logo.png" href="index.html" alt="img" class="header-logo" />
         </div>
       </header>
 
@@ -50,6 +50,17 @@
 
       </div>
 
+
+      <div class="bottom-card">
+        <div class="first-items">
+          <div class="bottom-card-likes"></div>
+          <i class="fa fa-heart"></i>
+        </div>
+      
+        <div class="bottom-card-price"></div>
+
+      </div>
+
 <div id="myModal" class="modal">
 
   <div class="modal-content">
@@ -73,11 +84,11 @@
 
 <div id="contactModal" class="modal">
   <div class="modal-content contact-modal-content">
-    <i class="fa fa-times"></i>
+    <i class="fa fa-times close-contact"></i>
 
     <div class="modal-header">
       <h1>Contactez-moi</h1>
-      <h1 class="modal-header-artist"></h1>
+      <h1 class="modal-header-artistname"></h1>
     </div>
 
     <div class="modal-body">
@@ -87,16 +98,16 @@
     <label for="firstname">Prénom</label>
     <input id="firstname"type="text">
 
-    <label for="firstname">Nom</label>
-    <input id="name" type="text">
+    <label for="lastname">Nom</label>
+    <input id="lastname" type="text">
 
-    <label for="firstname">Email</label>
+    <label for="email">Email</label>
     <input id="email" type="text">
 
-    <label for="firstname">Votre message</label>
-    <input id="message" type="text">
+    <label for="your-message" class="message-label">Votre message</label>
+    <textarea name="your-message" id="your-message" cols="30" rows="20"></textarea>
 
-    <button class="modal-send-button">Envoyer</button>
+    <button class="modal-send-button send-contact">Envoyer</button>
       </div>
     </div>
 

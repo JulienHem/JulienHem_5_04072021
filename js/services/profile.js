@@ -14,6 +14,7 @@ const pictureParent = document.querySelector(".pictures-cards");
 const prevSlide = document.querySelector(".carousel-prev");
 const nextSlide = document.querySelector(".carousel-next");
 const titles = ["Popularité", "Date", "Titre"];
+let totalLikes = 0;
 
 class Image {
   constructor(src) {
@@ -61,11 +62,15 @@ fetch("../../src/data.json")
     data.photographers.forEach((photographer) => {
       if (photographer.id === +urlPhotographerId) {
         profile = photographer;
+        displayBottomDetails(photographer)
+
       }
     });
     carouselAnimation();
     displayDetails();
+    
   });
+
 
 function displayDetails() {
   const photographerName = document.querySelector(
@@ -91,6 +96,7 @@ function displayDetails() {
   });
 }
 
+
 function createFilters() {
   const ul = document.querySelector("#filter-buttons");
   ul.innerHTML = "";
@@ -103,6 +109,14 @@ function createFilters() {
     ul.appendChild(li);
     li.appendChild(filterButtons);
   });
+}
+
+function displayBottomDetails(details, media) {
+  const cardPrice = document.querySelector('.bottom-card-price');
+
+  cardPrice.innerHTML = details.price + '€ / jour'
+  
+
 }
 
 function displayModalPictures(media) {
@@ -125,6 +139,7 @@ function displayModalPictures(media) {
   }
   mediaElement.classList.add("modal-media");
   pictureBottom.classList.add("pictures-bottom");
+  pictureContainer.classList.add('picture-container')
 
   pictureTitle.innerHTML = media.title;
 
@@ -137,7 +152,6 @@ function displayModalPictures(media) {
 }
 
 function carouselAnimation() {
- 
   const maxIndex = carouselMediaCount
   if (modalIndex === 0) {
     prevSlide.style.display = "none";
@@ -172,6 +186,8 @@ function displayPictures(media) {
   const pictureTitle = document.createElement("div");
   const pictureLikes = document.createElement("div");
   const pictureHeart = document.createElement("i");
+  const cardLikes = document.querySelector('.bottom-card-likes');
+
 
   if (media.image) {
     mediaElement = element.create(
@@ -195,7 +211,22 @@ function displayPictures(media) {
   pictureTitle.innerHTML = media.title;
   pictureLikes.innerHTML = media.likes;
 
+  totalLikes += media.likes;
+  cardLikes.innerHTML = totalLikes;
+
+
   pictureParent.appendChild(pictureCard);
+  
+
+  pictureHeart.addEventListener('click', () => {
+    
+    media.likes++;
+    pictureLikes.innerHTML = media.likes;
+    pictureLikes.appendChild(pictureHeart);
+    totalLikes++;
+    cardLikes.innerHTML = totalLikes;
+
+  })
 
   pictureCard.appendChild(mediaElement);
   pictureCard.append(pictureBottom);
@@ -273,6 +304,7 @@ function filterCards(filterName, value) {
   let filters = document.querySelectorAll(".filter-button");
   filters.forEach((filter) => {
     filter.addEventListener("click", () => {
+      totalLikes = 0;
       pictureParent.innerText = "";
       modalContent.innerText = "";
       if (filters[0].innerHTML === filterName) {
@@ -305,14 +337,15 @@ function filterCards(filterName, value) {
 
 function moveCarouselPictures() {
   carouselWrapper.style.right = (585*modalIndex) - 585 + "px";
-
 }
 
 function openModal() {
-  let cards = document.querySelectorAll(".pictures-cards-card");
-  const modal = document.querySelector("#myModal");
+  let cards = document.querySelectorAll(".pictures-cards-card-content");
+  const picturesModal = document.querySelector("#myModal");
   const contactModal = document.querySelector('#contactModal')
   const closeIcon = document.querySelector('.fa-times');
+  const closeContactIcon = document.querySelector('.close-contact');
+  const sendContact = document.querySelector('.send-contact');
   const contactButton = document.querySelector('.photographer-page-details-head__contact');
 
   contactButton.addEventListener('click', () => {
@@ -322,7 +355,7 @@ function openModal() {
   cards.forEach((card, index) => {
     card.addEventListener("click", () => {
       modalIndex = index + 1;
-      modal.style.display = "block";
+      picturesModal.style.display = "block";
       if(modalIndex > 1) {
         prevSlide.style.display = 'block';
       } else if (modalIndex === 1) {
@@ -332,15 +365,31 @@ function openModal() {
         nextSlide.style.display = 'none'
       } else if (modalIndex < 10) {
         nextSlide.style.display = 'block'
-
       }
         moveCarouselPictures();
     });
   });
+  closeContactIcon.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+  })
 
   closeIcon.addEventListener('click', () => {
-    modal.style.display = 'none';
-    contactModal.style.display = 'none';
+    picturesModal.style.display = 'none';
+  })
+
+  sendContact.addEventListener('click', () => {
+    const firstName = document.querySelector('#firstname').value;
+    const lastName = document.querySelector('#lastname').value;
+    const email = document.querySelector('#email').value;
+    const yourMessage = document.querySelector('#your-message').value;
+
+    console.log({
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+      YourMessage : yourMessage
+    });
+
   })
 
   

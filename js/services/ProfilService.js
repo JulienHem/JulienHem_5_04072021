@@ -29,6 +29,14 @@ function getTags(tags) {
   });
 }
 
+function hideButton() {
+  const contentButton = document.querySelector('.header-contenu-content');
+
+  window.addEventListener('scroll', () => {
+    contentButton.style.visibility = 'visible';
+  })
+}
+
 function createTags(photographers) {
   photographersTags.forEach((tag) => {
     const headerFilter = document.createElement("a");
@@ -53,7 +61,7 @@ function createTags(photographers) {
 function createPhotographersDetails(photographer) {
   const photographerCard = document.createElement("a");
   const img = document.createElement("img");
-  const photographerName = document.createElement("div");
+  const photographerName = document.createElement("h2");
   const photographerCity = document.createElement("div");
   const photographerQuote = document.createElement("div");
   const photographerPrice = document.createElement("div");
@@ -95,3 +103,5 @@ function createPhotographersDetails(photographer) {
     tag.appendChild(photographerTags);
   });
 }
+
+hideButton();

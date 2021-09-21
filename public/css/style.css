@@ -115,6 +115,30 @@ html {
   color: white;
 }
 
+.bottom-card {
+  bottom: 0px;
+  background-color: #DB8876;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0px;
+  left: 80%;
+  height: 25px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  justify-content: space-between;
+}
+.bottom-card .first-items {
+  display: flex;
+  flex-direction: row;
+}
+.bottom-card .first-items .bottom-card-likes {
+  margin-right: 0.5em;
+}
+
 .header-contenu {
   display: flex;
   justify-content: center;
@@ -123,12 +147,22 @@ html {
 .header-contenu-content {
   font-weight: bold;
   font-size: 18px;
-  background: #DB8876;
+  background: #db8876;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   width: 10%;
   padding: 8px 6px;
+  cursor: pointer;
+  visibility: hidden;
+  position: fixed;
+  bottom: 886px;
+  transition: 0.2s;
+}
+.header-contenu-content:hover {
+  background: #be7666;
+}
+.header-logo {
   cursor: pointer;
 }
 .header-main {
@@ -140,6 +174,7 @@ html {
 }
 .header-title {
   font-size: 36px;
+  order: 3;
 }
 .header-filters {
   height: 100%;
@@ -148,7 +183,7 @@ html {
   padding-left: 6em;
 }
 .header-filters-tag {
-  border: 0.5px solid #C4C4C4;
+  border: 0.5px solid #c4c4c4;
   padding: 3px 7px;
   font-weight: 500;
   font-size: 12px;
@@ -161,6 +196,49 @@ html {
   color: white;
 }
 
+@media (min-width: 375px) and (max-width: 450px) {
+  .container {
+    margin: 40px 20px;
+  }
+
+  .responsive-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 31px;
+  }
+
+  .header-main {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .header .header-logo {
+    width: 150px;
+  }
+  .header-title {
+    font-size: 14px;
+    order: 2;
+  }
+  .header-filters {
+    padding-left: 0;
+    width: 100%;
+    order: 3;
+    width: 100%;
+    order: 3;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.2em;
+    margin-top: 0.5em;
+  }
+
+  .photographers-cards {
+    margin-top: 2em;
+  }
+}
 .photographer-page {
   background: #fafafab7;
   border-radius: 5px;
@@ -228,12 +306,12 @@ html {
 }
 .pictures-cards-card {
   margin-bottom: 2em;
-  cursor: pointer;
 }
 .pictures-cards-card-content {
   object-fit: cover;
   width: 350px;
   height: 300px;
+  cursor: pointer;
 }
 
 .pictures-bottom {
@@ -261,6 +339,88 @@ html {
   margin-left: 6px;
 }
 
+@media (min-width: 350px) and (max-width: 450px) {
+  .photographer-page {
+    padding: 0;
+    background: none;
+  }
+  .photographer-page-details-city {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+  }
+  .photographer-page-details-head-name {
+    height: 60px;
+    font-size: 36px;
+    padding-right: 0;
+  }
+
+  .photographer-picture {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    left: 243px;
+    top: 133px;
+    box-shadow: none;
+  }
+
+  .photographer-page-details-head__contact {
+    position: fixed;
+    display: flex;
+    left: 31%;
+    top: 87%;
+    height: 40px;
+    padding: 0.4em 0.8em;
+  }
+
+  .filter {
+    display: none !important;
+  }
+
+  .bottom-card {
+    display: none !important;
+  }
+
+  .pictures-cards {
+    margin-top: 2em;
+  }
+  .pictures-cards-card {
+    margin-bottom: 38px;
+  }
+  .pictures-cards-card img {
+    height: 190px;
+    width: 335px;
+    border-radius: 5px;
+  }
+  .pictures-cards-card video {
+    height: 190px;
+    width: 335px;
+    border-radius: 5px;
+  }
+  .pictures-cards-card .pictures-bottom-title {
+    font-size: 14px;
+  }
+  .pictures-cards-card .pictures-bottom-likes {
+    font-size: 14px;
+  }
+
+  .modal {
+    padding: 0 !important;
+  }
+  .modal-body {
+    top: 30% !important;
+  }
+  .modal-content {
+    height: 100%;
+    width: 100% !important;
+  }
+  .modal .carousel-container-picture {
+    margin-left: 3%;
+  }
+  .modal .carousel-container-picture img {
+    height: 248px;
+  }
+}
 .filter {
   display: flex;
   flex-direction: row;
@@ -396,7 +556,6 @@ li:not(:first-child) {
 
 .modal-body {
   position: relative;
-  padding: 2px 16px;
   min-height: 350px;
   top: 50%;
   overflow: hidden;
@@ -478,13 +637,27 @@ li:not(:first-child) {
   cursor: pointer;
 }
 
+#contactModal .modal-content {
+  height: 700px;
+}
+#contactModal h1 {
+  font-size: 64px;
+}
+#contactModal label {
+  font-size: 36px;
+}
+#contactModal .message-label {
+  margin-top: 1rem;
+}
 #contactModal .fa-times {
-  position: relative;
+  position: absolute;
   color: white;
-  left: 270px;
+  left: 88%;
+  font-size: 50px;
+  z-index: 5;
 }
 #contactModal .contact-modal-content {
-  background-color: #DB8876;
+  background-color: #db8876;
   padding: 2rem;
 }
 #contactModal .modal-body-inputs {
@@ -492,8 +665,8 @@ li:not(:first-child) {
   flex-direction: column;
 }
 #contactModal .modal-body {
-  height: 500px;
-  padding-top: 5rem;
+  height: 85%;
+  top: 15%;
 }
 #contactModal .modal-body-inputs {
   height: 100%;
@@ -501,10 +674,41 @@ li:not(:first-child) {
   align-content: space-around;
 }
 #contactModal .modal-body input {
-  height: 68px;
+  border: none;
+  height: 150px;
+  font-size: 20px;
+  border-radius: 5px;
+  padding-left: 0.5rem;
 }
-#contactModal .modal-body input:nth-child(3) {
-  height: 170px;
+#contactModal .modal-body textarea {
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  resize: none;
+}
+#contactModal .modal-send-button {
+  background: #911C1C;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  line-height: 26px;
+  padding: 21px 11px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 70px;
+  width: 250px;
+  margin-top: 1rem;
+}
+#contactModal .modal-send-button:hover {
+  background: #721616;
+}
+
+@media (min-width: 350px) and (max-width: 450px) {
+  .carousel-container-picture {
+    max-width: 290px;
+    margin-right: 220px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

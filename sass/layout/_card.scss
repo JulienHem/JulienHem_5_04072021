@@ -94,3 +94,30 @@
     }
   }
 }
+
+.bottom-card {
+  bottom: 0px;
+  background-color: #DB8876;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0px;
+  left: 80%;
+  height: 25px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  justify-content: space-between;
+
+  .first-items {
+    display: flex;
+    flex-direction: row;
+
+    .bottom-card-likes{
+      margin-right: 0.5em;
+    }
+  }
+}
+
