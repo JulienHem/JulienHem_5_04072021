@@ -605,7 +605,7 @@ li:not(:first-child) {
 }
 
 .carousel-prev {
-  margin-left: 60px;
+  margin-left: 32px;
   font-size: 30px;
   color: #911C1C;
 }

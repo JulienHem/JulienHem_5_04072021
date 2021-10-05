@@ -11,8 +11,8 @@ const carouselWrapper = document.querySelector(".carousel-container-picture");
 let filters = document.querySelectorAll(".filter-button");
 let modalContent = document.querySelector(".carousel-container-picture");
 const pictureParent = document.querySelector(".pictures-cards");
-const prevSlide = document.querySelector(".carousel-prev");
-const nextSlide = document.querySelector(".carousel-next");
+const prevSlide = document.querySelector(".go-back");
+const nextSlide = document.querySelector(".go-next");
 const titles = ["Popularité", "Date", "Titre"];
 let totalLikes = 0;
 
@@ -173,8 +173,9 @@ function carouselAnimation() {
     prevSlide.style.display = "none";
   }
 
-  nextSlide.addEventListener("click", () => {
+  nextSlide.addEventListener("click", (e) => {
     // CALCULATING THE EXACT VALUE TO SWIPE THE CAROUSEL TO THE RIGHT
+    e.preventDefault();
     carouselWrapper.style.right = (585*(modalIndex - 1)) + 585 + "px";
     modalIndex++;
     prevSlide.style.display = "block";
@@ -185,10 +186,12 @@ function carouselAnimation() {
     }
   });
 
-  prevSlide.addEventListener("click", () => {
+  prevSlide.addEventListener("click", (e) => {
+    
+    // HIDING THE LEFT ARROW IF WE ARE AT THE FIRST IMAGE
+    e.preventDefault();
 
     modalIndex--;
-    // HIDING THE LEFT ARROW IF WE ARE AT THE FIRST IMAGE
     if (modalIndex === 1) {
       prevSlide.style.display = 'none';
     }
