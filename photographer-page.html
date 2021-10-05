@@ -72,7 +72,7 @@
           <div class="carousel-container-picture"></div>
         </div>
       </div>
-      <i class="fa fa-times"></i>
+      <a class="close-tab" tabindex="1" href=""><i class="fa fa-times"></i>c</a>
       <a tabindex="1" aria-hidden="true" class="go-back carousel-nav carousel-prev" href=""><i class="fa fa-chevron-left carousel-nav carousel-prev"></i></a>
       <a tabindex="2" aria-hidden="true" class="go-next carousel-nav carousel-next" href=""><i class="fa fa-chevron-right carousel-nav carousel-next"></i></a>
 
@@ -82,9 +82,9 @@
 
 </div>
 
-<div id="contactModal" class="modal">
+<div id="contactModal" aria-hidden="true" role="dialog"  class="modal">
   <div class="modal-content contact-modal-content">
-    <i class="fa fa-times close-contact"></i>
+    <a tabindex="1" class='close-contact' href="">c<i class="fa fa-times"></i></a>
 
     <div class="modal-header">
       <h1>Contactez-moi</h1>
@@ -96,18 +96,18 @@
 
   
     <label for="firstname">Prénom</label>
-    <input id="firstname"type="text">
+    <input tabindex="2" id="firstname"type="text">
 
     <label for="lastname">Nom</label>
-    <input id="lastname" type="text">
+    <input tabindex="3" id="lastname" type="text">
 
     <label for="email">Email</label>
-    <input id="email" type="text">
+    <input tabindex="4" id="email" type="text">
 
     <label for="your-message" class="message-label">Votre message</label>
-    <textarea name="your-message" id="your-message" cols="30" rows="20"></textarea>
+    <textarea tabindex="5" name="your-message" id="your-message" cols="30" rows="20"></textarea>
 
-    <button class="modal-send-button send-contact">Envoyer</button>
+    <button tabindex="6" class="modal-send-button send-contact">Envoyer</button>
       </div>
     </div>
 

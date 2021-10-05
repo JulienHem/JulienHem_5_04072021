@@ -132,6 +132,15 @@
   right: 0;
 }
 
+.close-tab {
+  color: #ffff;
+  font-size: 35px;
+  position: absolute;
+  top: 7%;
+  right: 14%;
+  cursor: pointer;
+}
+
 .modal-media {
   width: 365px;
   object-fit: cover;
@@ -153,6 +162,15 @@
 }
 
 #contactModal {
+
+  .close-contact {
+    position: absolute;
+    height: 50px;
+    left: 88%;
+    font-size: 50px;
+    z-index: 5;
+    color: #db8876;
+  }
 
   .modal-content{
     height: 700px;

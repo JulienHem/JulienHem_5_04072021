@@ -227,7 +227,7 @@ function displayPictures(media) {
 
   mediaElement.classList.add("pictures-cards-card-content");
   pictureCard.classList.add("pictures-cards-card");
-  pictureCard.setAttribute('tabindex', 4)
+  pictureCard.setAttribute('tabindex', 7)
   pictureBottom.classList.add("pictures-bottom");
   pictureTitle.classList.add("pictures-bottom-title");
   pictureLikes.classList.add("pictures-bottom-likes");
@@ -390,7 +390,8 @@ function openFormModal() {
   const sendContact = document.querySelector('.send-contact');
 
   // HIDE MODAL
-  closeContactIcon.addEventListener('click', () => {
+  closeContactIcon.addEventListener('click', (e) => {
+    e.preventDefault();
     contactModal.style.display = 'none';
   })
 
