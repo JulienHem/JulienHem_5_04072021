@@ -179,7 +179,10 @@
   }
   .contact-modal-content {
     background-color: #db8876;
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+    padding-left: 2rem;
   }
 
   .modal-body-inputs {
@@ -189,7 +192,7 @@
 
   .modal-body {
     height: 85%;
-    top: 15%;
+    top: 25%;
 
     &-inputs {
       height: 100%;
