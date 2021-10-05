@@ -735,6 +735,11 @@ li:not(:first-child) {
 }
 
 @media (min-width: 350px) and (max-width: 450px) {
+  .close-tab {
+    top: 6%;
+    right: 10%;
+  }
+
   .modal-media {
     position: relative;
     right: 36px;
