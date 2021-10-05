@@ -2,12 +2,16 @@ const photographersTags = [];
 const photographerDetails = [];
 let activeFilters = [];
 let allPhotographers = [];
+let isSelected = false;
+
 const photographersCards = document.querySelector(".photographers-cards");
 const profileTags = document.querySelector(".header-filters");
 const profilePicture = document.querySelector(".photographer-picture");
 const profileCity = document.querySelector(".photographer-city");
 const profileDesc = document.querySelector(".photographer-desc");
 
+
+// FETCH THE DATA FROM THE JSON
 fetch("../../src/data.json")
   .then((response) => response.json())
   .then((json) => {
@@ -21,6 +25,8 @@ fetch("../../src/data.json")
     });
   });
 
+
+// PUTING THE TAGS IN AN ARRAY
 function getTags(tags) {
   tags.forEach((tag) => {
     if (!photographersTags.includes(tag)) {
@@ -29,6 +35,7 @@ function getTags(tags) {
   });
 }
 
+// HIDE TOP BUTTON ON SCROLL
 function hideButton() {
   const contentButton = document.querySelector('.header-contenu-content');
 
@@ -37,6 +44,8 @@ function hideButton() {
   })
 }
 
+
+// CREATE THE TAGS
 function createTags(photographers) {
   photographersTags.forEach((tag) => {
     const headerFilter = document.createElement("a");
@@ -46,10 +55,31 @@ function createTags(photographers) {
     profileTags.appendChild(headerFilter);
 
     headerFilter.addEventListener("click", () => {
-      activeFilters.push(tag);
-      photographers = allPhotographers.filter((photographer) => {
-        return photographer.tags.filter((tag) => activeFilters.includes(tag)).length;
-      });
+      // SET AN ATTRIBUTE TO KNOW IF THE TAG AS ALREADY BEEN SELECTED
+      let filterAttribute = headerFilter.getAttribute('isSelected');
+      // STYLING IF IT DOESNT HAVE THE ATTRIBUTE
+      if(!filterAttribute) {
+        activeFilters.push(tag);
+        headerFilter.setAttribute('isSelected', true);
+        headerFilter.style.backgroundColor = '#911C1C';
+        headerFilter.style.color = '#ffffff';
+      } else {
+        // IF IT HAS ALREADY BEEN SELECTED
+        headerFilter.removeAttribute('isSelected');
+        headerFilter.style.backgroundColor = '#ffffff';
+        headerFilter.style.color = '#911C1C';
+        const tagIndex = activeFilters.indexOf(tag);
+        activeFilters.splice(tagIndex, 1);
+      }
+      // SELECT ALL PHOTOGRAPHERS IF NONE OF THEM HAVE BEEN SELECTED
+      if(activeFilters.length === 0 ) {
+        photographers = allPhotographers;
+      } else {
+        photographers = allPhotographers.filter((photographer) => {
+          return photographer.tags.filter((tag) => activeFilters.includes(tag)).length;
+        });
+      }
+     
       photographersCards.innerHTML = "";
       photographers.forEach((photographer) => {
         createPhotographersDetails(photographer);
@@ -58,6 +88,8 @@ function createTags(photographers) {
   });
 }
 
+
+// DISPLAYING PHOTOGRAPHERS DETAILS
 function createPhotographersDetails(photographer) {
   const photographerCard = document.createElement("a");
   const img = document.createElement("img");

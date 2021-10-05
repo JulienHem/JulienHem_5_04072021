@@ -16,6 +16,8 @@ const nextSlide = document.querySelector(".carousel-next");
 const titles = ["Popularité", "Date", "Titre"];
 let totalLikes = 0;
 
+// CREATE A CLASS FOR EVERY IMAGES ELEMENT
+
 class Image {
   constructor(src) {
     const element = document.createElement("img");
@@ -24,6 +26,8 @@ class Image {
   }
 }
 
+// CLASS FOR ALL VIDEOS ELEMENT
+
 class Video {
   constructor(src) {
     const element = document.createElement("video");
@@ -31,6 +35,8 @@ class Video {
     this.getElement = () => element;
   }
 }
+
+// INSTANTIATE IMAGE OR VIDEO WITH ITS TYPE
 
 class ElementFactory {
   constructor() {
@@ -47,10 +53,12 @@ class ElementFactory {
   }
 }
 
+// FETCHING THE DATA
+
 fetch("../../src/data.json")
   .then((response) => response.json())
   .then((data) => {
-    data.media.forEach((medias, index) => {
+    data.media.forEach((medias) => {
       if (medias.photographerId === +urlPhotographerId) {
         displayPictures(medias);
         displayModalPictures(medias);
@@ -72,25 +80,22 @@ fetch("../../src/data.json")
   });
 
 
+  // DISPLAYING PHOTOGRAPHER DETAILS
+
+
 function displayDetails() {
   const modalArtistName = document.querySelector('.modal-header-artistname');
-
-  const photographerName = document.querySelector(
-    ".photographer-page-details-head-name"
-  );
-  const photographerCity = document.querySelector(
-    ".photographer-page-details-city"
-  );
+  const photographerName = document.querySelector(".photographer-page-details-head-name");
+  const photographerCity = document.querySelector(".photographer-page-details-city");
   const photographerPicture = document.querySelector(".photographer-picture");
-  const photographerTags = document.querySelector(
-    ".photographer-page-details-tags"
-  );
+  const photographerTags = document.querySelector(".photographer-page-details-tags");
 
-  photographerPicture.src =
-    "public/media/profiles_pictures/" + profile.portrait;
+  photographerPicture.src = "public/media/profiles_pictures/" + profile.portrait;
   photographerName.innerHTML = profile.name;
   photographerCity.innerHTML = profile.city;
   modalArtistName.innerHTML = profile.name;
+
+  // DISPLAYING TAGS 
   profile.tags.forEach((tag) => {
     const photographerTag = document.createElement("div");
     photographerTag.classList.add("photographers-cards-tags");
@@ -99,11 +104,12 @@ function displayDetails() {
   });
 }
 
-
+// CREATING THE FILTER BUTTON
 function createFilters() {
   const ul = document.querySelector("#filter-buttons");
   ul.innerHTML = "";
 
+  // DISPLAYING THE TITLES FOR THE DROPDOWN
   titles.forEach((title) => {
     const li = document.createElement("li");
     const filterButtons = document.createElement("button");
@@ -114,27 +120,32 @@ function createFilters() {
   });
 }
 
-function displayBottomDetails(details, media) {
+// DISPLAYING THE DETAILS FOR THE LITTLE DETAILS CARD ON THE BOTTOM RIGHT
+
+function displayBottomDetails(details) {
   const cardPrice = document.querySelector('.bottom-card-price');
-
   cardPrice.innerHTML = details.price + '€ / jour'
-  
-
 }
 
+
+// DISPLAYING THE PICTURES INSIDE THE MODAL
 function displayModalPictures(media) {
+  // NEW INSTANCE OF THE FACTORY TO DISPLAY IMAGES OR VIDEOS
   const element = new ElementFactory();
   const pictureContainer = document.createElement('div');
   const pictureBottom = document.createElement("div");
   const pictureTitle = document.createElement("div");
 
 
+
   if (media.image) {
+    // DISPLAYING AN IMAGE
     mediaElement = element.create(
       "image",
       "public/media/pictures/" + media.image
     );
   } else {
+    // DISPLAYING A VIDEO
     mediaElement = element.create(
       "video",
       "public/media/videos/" + media.video
@@ -154,6 +165,8 @@ function displayModalPictures(media) {
   
 }
 
+
+// MOVING THE CAROUSSEL
 function carouselAnimation() {
   const maxIndex = carouselMediaCount
   if (modalIndex === 0) {
@@ -161,10 +174,12 @@ function carouselAnimation() {
   }
 
   nextSlide.addEventListener("click", () => {
+    // CALCULATING THE EXACT VALUE TO SWIPE THE CAROUSEL TO THE RIGHT
     carouselWrapper.style.right = (585*(modalIndex - 1)) + 585 + "px";
     modalIndex++;
     prevSlide.style.display = "block";
 
+    // HIDING THE RIGHT ARROW IF WE REACH THE LAST IMAGE
     if(modalIndex === maxIndex) {
       nextSlide.style.display = 'none';
     }
@@ -173,6 +188,7 @@ function carouselAnimation() {
   prevSlide.addEventListener("click", () => {
 
     modalIndex--;
+    // HIDING THE LEFT ARROW IF WE ARE AT THE FIRST IMAGE
     if (modalIndex === 1) {
       prevSlide.style.display = 'none';
     }
@@ -182,12 +198,14 @@ function carouselAnimation() {
 }
 
 
+// DISPLAYING PROFILE PICTURES
 function displayPictures(media) {
   const pictureCard = document.createElement("div");
+  const pictureLink = document.createElement("a");
   const element = new ElementFactory();
   const pictureBottom = document.createElement("div");
   const pictureTitle = document.createElement("div");
-  const pictureLikes = document.createElement("div");
+  const pictureLikes = document.createElement("a");
   const pictureHeart = document.createElement("i");
   const cardLikes = document.querySelector('.bottom-card-likes');
 
@@ -206,40 +224,44 @@ function displayPictures(media) {
 
   mediaElement.classList.add("pictures-cards-card-content");
   pictureCard.classList.add("pictures-cards-card");
+  pictureCard.setAttribute('tabindex', 4)
   pictureBottom.classList.add("pictures-bottom");
   pictureTitle.classList.add("pictures-bottom-title");
   pictureLikes.classList.add("pictures-bottom-likes");
   pictureHeart.classList.add("fas", "fa-heart");
+  pictureLink.classList.add("picture-link")
+  pictureLink.setAttribute('href', "");
+  pictureLikes.setAttribute('href', "")
 
   pictureTitle.innerHTML = media.title;
   pictureLikes.innerHTML = media.likes;
 
   totalLikes += media.likes;
   cardLikes.innerHTML = totalLikes;
-
-
   pictureParent.appendChild(pictureCard);
   
-
-  pictureHeart.addEventListener('click', () => {
-    
+  // INCREMENT THE LIKES
+  pictureLikes.addEventListener('click', (e) => {
+    e.preventDefault();
     media.likes++;
     pictureLikes.innerHTML = media.likes;
     pictureLikes.appendChild(pictureHeart);
     totalLikes++;
     cardLikes.innerHTML = totalLikes;
-
   })
 
-  pictureCard.appendChild(mediaElement);
+  pictureCard.appendChild(pictureLink);
+  pictureLink.appendChild(mediaElement);
   pictureCard.append(pictureBottom);
   pictureBottom.appendChild(pictureTitle);
   pictureBottom.appendChild(pictureLikes);
   pictureLikes.appendChild(pictureHeart);
 
-  openModal();
+  openPictureModal();
 }
 
+
+// STYLE THE FIRST AND LAST ELEMENT OF THE SELECT DROPDOWN
 function styleFirstElement() {
   const buttons = document.getElementsByClassName("filter-button");
   const ul = document.querySelector("#filter-buttons");
@@ -257,6 +279,8 @@ function styleFirstElement() {
   ul.appendChild(icon);
 }
 
+
+// TOGGLE THE DROPDOWN FOR THE FILTERS
 function toggleDropdown(display) {
   const arrow = document.querySelector(".fa-chevron-down");
   for (let i = 1; i < titles.length; i++) {
@@ -273,11 +297,13 @@ function toggleDropdown(display) {
   }
 }
 
+// SWAPPING THE ELEMENTS AT THE FIRST PLACE OF THE SELECT
 function swapElements() {
   const filterButtons = document.querySelectorAll(".filter-button");
 
   filterButtons.forEach((filterButton) => {
     filterButton.addEventListener("click", (e) => {
+      // WHETHER ITS TOGGLE OR NOT WE SHOW THE DROPDOWN
       if (!toggle) {
         toggleDropdown("block");
         toggle = true;
@@ -285,12 +311,17 @@ function swapElements() {
         toggleDropdown("none");
         toggle = false;
       }
-
+      // CHECKING THE TITLE FROM THE TARGET THAT HAS BEEN CLICKED
       let find = titles.find((title) => title === e.target.innerHTML);
+      // CHECKING ITS INDEX
       let titlePosition = titles.indexOf(e.target.innerHTML);
+      // FIRSTPOSITION OF THE DROPDOWN IS EQUAL TO THE FIRST ELEMENT IN THE ARRAY
       const firstPosition = titles[0];
+      // THE FIRST ELEMENT IS EQUAL TO THE TARGET
       titles[0] = find;
+      // DISPLAYING THE CORRECT TITLE
       titles[titlePosition] = firstPosition;
+      // UPDATE THE DOM
       updateFiltersDom();
     });
   });
@@ -303,6 +334,7 @@ function updateFiltersDom() {
   });
 }
 
+// FILTERS THE CARDS ACCORDING THE THE DROPDOWN
 function filterCards(filterName, value) {
   let filters = document.querySelectorAll(".filter-button");
   filters.forEach((filter) => {
@@ -311,14 +343,19 @@ function filterCards(filterName, value) {
       pictureParent.innerText = "";
       modalContent.innerText = "";
       if (filters[0].innerHTML === filterName) {
+        // SORTING THE ARRAY ACCORDING TO THE FILTER
         media.sort((a, b) => {
+          // SWITCH CASE WITH THE CORRECT VALUES
           switch (value) {
+            // FILTER BY LIKES
             case "likes":
               return b[value] - a[value];
 
+            // FILTER BY DATES
             case "date":
               return new Date(a[value]) - new Date(b[value]);
 
+            // FILTER BY TITLE
             case "title":
               if (a[value] < b[value]) {
                 return -1;
@@ -331,6 +368,7 @@ function filterCards(filterName, value) {
         });
       }
       media.forEach((sortedMedia) => {
+        // DISPLAYING THE PICTURES WITH THE SORTED ARRAY
         displayPictures(sortedMedia);
         displayModalPictures(sortedMedia);
       });
@@ -342,21 +380,52 @@ function moveCarouselPictures() {
   carouselWrapper.style.right = (585*modalIndex) - 585 + "px";
 }
 
-function openModal() {
-  let cards = document.querySelectorAll(".pictures-cards-card-content");
-  const picturesModal = document.querySelector("#myModal");
-  const contactModal = document.querySelector('#contactModal')
-  const closeIcon = document.querySelector('.fa-times');
+function openFormModal() {
+  const contactModal = document.querySelector('#contactModal');
   const closeContactIcon = document.querySelector('.close-contact');
-  const sendContact = document.querySelector('.send-contact');
   const contactButton = document.querySelector('.photographer-page-details-head__contact');
+  const sendContact = document.querySelector('.send-contact');
 
+  // HIDE MODAL
+  closeContactIcon.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+  })
+
+  // OPEN THE CONTACT MODAL
   contactButton.addEventListener('click', () => {
     contactModal.style.display = "block";
   })
 
+
+  // SENDING THE CONTACT INFOS
+  sendContact.addEventListener('click', () => {
+    const firstName = document.querySelector('#firstname').value;
+    const lastName = document.querySelector('#lastname').value;
+    const email = document.querySelector('#email').value;
+    const yourMessage = document.querySelector('#your-message').value;
+
+    
+    console.log({
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+      YourMessage : yourMessage
+    });
+
+  })
+}
+
+function openPictureModal() {
+  let cards = document.querySelectorAll(".picture-link");
+  const picturesModal = document.querySelector("#myModal");
+  const closeIcon = document.querySelector('.fa-times');
+
+ 
+
   cards.forEach((card, index) => {
-    card.addEventListener("click", () => {
+    // MOVING TO THE EXACT PICTURE THAT WE CLICKED ON
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
       modalIndex = index + 1;
       picturesModal.style.display = "block";
       if(modalIndex > 1) {
@@ -372,28 +441,13 @@ function openModal() {
         moveCarouselPictures();
     });
   });
-  closeContactIcon.addEventListener('click', () => {
-    contactModal.style.display = 'none';
-  })
-
+ 
+  // CLOSE THE MODAL
   closeIcon.addEventListener('click', () => {
     picturesModal.style.display = 'none';
   })
 
-  sendContact.addEventListener('click', () => {
-    const firstName = document.querySelector('#firstname').value;
-    const lastName = document.querySelector('#lastname').value;
-    const email = document.querySelector('#email').value;
-    const yourMessage = document.querySelector('#your-message').value;
 
-    console.log({
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      YourMessage : yourMessage
-    });
-
-  })
 
   
 }
@@ -401,3 +455,4 @@ function openModal() {
 createFilters();
 styleFirstElement();
 swapElements();
+openFormModal();
